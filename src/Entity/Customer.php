@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\CustomerRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -10,7 +12,10 @@ use Doctrine\ORM\Mapping as ORM;
 
 
 #[ORM\Entity(repositoryClass: CustomerRepository::class)]
-#[ApiResource()]
+#[ApiResource(
+    attributes: ['pagination_enabled' => true]
+)]
+#[ApiFilter(SearchFilter::class, properties: ['firstName' => 'start', 'lastName' => 'start', 'company'])]
 class Customer
 {
     #[ORM\Id]

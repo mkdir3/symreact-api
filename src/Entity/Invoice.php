@@ -7,7 +7,13 @@ use App\Repository\InvoiceRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: InvoiceRepository::class)]
-#[ApiResource()]
+#[ApiResource(
+    attributes: [
+        "pagination_enabled" => true,
+        "pagination_items_per_page" => 30,
+    ],
+    order: ["sentAt" => "DESC"]
+)]
 class Invoice
 {
     #[ORM\Id]
