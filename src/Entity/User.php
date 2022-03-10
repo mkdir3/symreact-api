@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ApiResource()]
@@ -17,9 +18,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
+    #[Groups(["customers_read", "invoices_read"])]
     private $id;
 
     #[ORM\Column(type: 'string', length: 180, unique: true)]
+    #[Groups(["customers_read", "invoices_read"])]
     private $email;
 
     #[ORM\Column(type: 'json')]
@@ -29,9 +32,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $password;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Groups(["customers_read", "invoices_read"])]
     private $firstName;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Groups(["customers_read", "invoices_read"])]
     private $lastName;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Customer::class)]
