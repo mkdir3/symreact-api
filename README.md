@@ -1,6 +1,4 @@
-
 ![Logo](https://symfony.com/images/logos/header-logo.svg)
-
 
 # Symreact (Symfony API)
 
@@ -8,15 +6,11 @@ API under Symfony 6.0 & PHP 8.1.3, with a backadmin,
 different users having for each, customers,
 and for each customer invoices linked to them.
 
-
-
-
 ## Lessons Learned
 
 - Start a project from scratch in Symfony
 - Create API and serve these resources to a front app
 - Manage Front and Back interactions
-
 
 ## Tech Stack
 
@@ -24,6 +18,8 @@ and for each customer invoices linked to them.
 
 **Server:** PHP (8.1.3), Symfony(6.0), API Platform
 
+**Packages** [
+LexikJWTAuthenticationBundle](https://github.com/lexik/LexikJWTAuthenticationBundle/blob/2.x/Resources/doc/index.md#getting-started)
 
 ## Run Locally
 
@@ -55,7 +51,6 @@ Start the server
   php -S localhost:8000
 ```
 
-
 ## Documentation
 
 - [Symfony](https://symfony.com/)
@@ -63,15 +58,10 @@ Start the server
 - [API Platform](https://api-platform.com/)
 - [Postman](https://www.postman.com/)
 
-
-
-
 ## Feedback
 
 If you have any feedback, please reach out to me at contact@thellos.fr
 
-
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
-
