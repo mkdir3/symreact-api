@@ -44,8 +44,8 @@ class Invoice
 
     #[ORM\Column(type: 'datetime')]
     #[Groups(["invoices_read", "customers_read", "invoices_subresource"])]
-    #[Assert\Type(type: "\Date", message: "La date doit être au format YYYY-MM-DD")]
-    #[Assert\NotBlank(message: " Le date d'envoi est obligatoire")]
+    #[Assert\Type(type: "\DateTime", message: "La date doit être au format YYYY-MM-DD")]
+    #[Assert\NotBlank(message: " La date d'envoi est obligatoire")]
     private $sentAt;
 
     #[ORM\Column(type: 'string', length: 255)]

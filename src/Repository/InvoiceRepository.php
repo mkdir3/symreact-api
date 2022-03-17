@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Invoice;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
@@ -43,6 +44,20 @@ class InvoiceRepository extends ServiceEntityRepository
         if ($flush) {
             $this->_em->flush();
         }
+    }
+
+    // Get the last chrono for a defined user invoice and increment it
+    public function findNextChrono(User $user)
+    {
+        return $this->createQueryBuilder("i")
+            ->select("i.chrono")
+            ->join("i.customer", "c")
+            ->where("c.user = :user")
+            ->setParameter("user", $user)
+            ->orderBy("i.chrono", "DESC")
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getSingleScalarResult() + 1;
     }
 
     // /**
