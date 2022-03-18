@@ -1,2 +1,10 @@
-body {
+.jumbotron {
+  background: url(https://images.unsplash.com/photo-1457877916676-133b53113613?auto=format&fit=crop&w=1850&q=80);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 30em;
+}
+
+.pad-btn {
+  padding-bottom: 50px;
 }
