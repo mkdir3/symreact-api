@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import Pagination from "../components/Pagination";
+import CustomersAPI from "../services/CustomersAPI";
 
 const CustomerPage = () => {
   const [customers, setCustomers] = useState([]);
@@ -8,9 +8,7 @@ const CustomerPage = () => {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    axios
-      .get("https://localhost:8000/api/customers")
-      .then((response) => response.data["hydra:member"])
+    CustomersAPI.findAll()
       .then((data) => setCustomers(data))
       .catch((error) => console.log(error.response));
   }, []);
@@ -22,8 +20,7 @@ const CustomerPage = () => {
     // filter customers without the deleted one
     setCustomers(customers.filter((customer) => customer.id !== id));
 
-    axios
-      .delete("https://localhost:8000/api/customers/" + id)
+    CustomersAPI.delete(id)
       .then((response) => console.log("ok"))
       .catch((error) => {
         // if error during deleting, set customers back to the original one
@@ -36,9 +33,8 @@ const CustomerPage = () => {
     setCurrentPage(page);
   };
 
-  const handleSearch = (event) => {
-    const value = event.currentTarget.value;
-    setSearch(value);
+  const handleSearch = ({ currentTarget }) => {
+    setSearch(currentTarget.value);
     setCurrentPage(1);
   };
 

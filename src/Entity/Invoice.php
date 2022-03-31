@@ -17,7 +17,7 @@ use Symfony\Component\Validator\Constraints as Assert;
         "normalization_context" => ["groups" => ["invoices_subresource"]]
     ]],
     attributes: [
-        "pagination_enabled" => true,
+        "pagination_enabled" => false,
         "pagination_items_per_page" => 30,
     ],
     order: ["sentAt" => "DESC"],

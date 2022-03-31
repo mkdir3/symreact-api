@@ -16,7 +16,8 @@ import ReactDOM from "react-dom";
 import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
 import { HashRouter, Routes, Route } from "react-router-dom";
-import CustomerPage from "./pages/CustomerPage";
+import CustomersPage from "./pages/CustomersPage";
+import InvoicesPage from "./pages/InvoicesPage";
 
 const App = () => {
   return (
@@ -24,7 +25,8 @@ const App = () => {
       <Navbar />
       <main className="container pt-3">
         <Routes>
-          <Route path="/customers" element={<CustomerPage />}></Route>
+          <Route path="/customers" element={<CustomersPage />}></Route>
+          <Route path="/invoices" element={<InvoicesPage />}></Route>
           <Route path="/" element={<HomePage />}></Route>
         </Routes>
       </main>
