@@ -18,8 +18,11 @@ and for each customer invoices linked to them.
 
 **Server:** PHP (8.1.3), Symfony(6.0), API Platform
 
-**Packages** [
-LexikJWTAuthenticationBundle](https://github.com/lexik/LexikJWTAuthenticationBundle/blob/2.x/Resources/doc/index.md#getting-started)
+**Packages**
+
+[LexikJWTAuthenticationBundle](https://github.com/lexik/LexikJWTAuthenticationBundle/blob/2.x/Resources/doc/index.md#getting-started)
+
+[JWT-Decode](https://www.npmjs.com/package/jwt-decode)
 
 ## Run Locally
 

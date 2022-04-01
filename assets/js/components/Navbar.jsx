@@ -1,12 +1,19 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import LoginAPI from "../services/LoginAPI";
 
-const Navbar = (props) => {
+const Navbar = ({ isAuth, onLogout }) => {
+  const handleLogout = () => {
+    LoginAPI.logout();
+    onLogout(false);
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
+        <Link className="navbar-brand" to="/">
           Symreact API
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -22,21 +29,26 @@ const Navbar = (props) => {
         <div className="collapse navbar-collapse" id="navbarColor03">
           <ul className="navbar-nav me-auto">
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <Link className="nav-link" to="/customers">
                 Clients
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <Link className="nav-link" to="/invoices">
                 Factures
-              </a>
+              </Link>
             </li>
           </ul>
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
-              <a href="" className="btn btn-outline-danger">
-                Déconnexion
-              </a>
+              {isAuth && (
+                <button
+                  onClick={handleLogout}
+                  className="btn btn-outline-danger"
+                >
+                  Déconnexion
+                </button>
+              )}
             </li>
           </ul>
         </div>
