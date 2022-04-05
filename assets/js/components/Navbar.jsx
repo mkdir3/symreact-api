@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import LoginAPI from "../services/LoginAPI";
+import AuthContext from "../contexts/AuthContext";
 
-const Navbar = ({ isAuth, onLogout }) => {
+const Navbar = ({ history }) => {
+  const { isAuth, setIsAuth } = useContext(AuthContext);
+
   const handleLogout = () => {
     LoginAPI.logout();
-    onLogout(false);
+    setIsAuth(false);
+    history.replace("#/login");
+    history.go();
   };
 
   return (
@@ -27,18 +32,21 @@ const Navbar = ({ isAuth, onLogout }) => {
         </button>
 
         <div className="collapse navbar-collapse" id="navbarColor03">
-          <ul className="navbar-nav me-auto">
-            <li className="nav-item">
-              <Link className="nav-link" to="/customers">
-                Clients
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/invoices">
-                Factures
-              </Link>
-            </li>
-          </ul>
+          {isAuth && (
+            <ul className="navbar-nav me-auto">
+              <li className="nav-item">
+                <Link className="nav-link" to="/customers">
+                  Clients
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/invoices">
+                  Factures
+                </Link>
+              </li>
+            </ul>
+          )}
+
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
               {isAuth && (

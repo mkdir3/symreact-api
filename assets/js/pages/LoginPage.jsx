@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import AuthContext from "../contexts/AuthContext";
 import LoginAPI from "../services/LoginAPI";
 
-const LoginPage = ({ onLogin }) => {
+const LoginPage = ({ history }) => {
+  const { isAuth, setIsAuth } = useContext(AuthContext);
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
@@ -19,7 +21,9 @@ const LoginPage = ({ onLogin }) => {
 
     LoginAPI.login(credentials)
       .then(setError(""))
-      .then(onLogin(true))
+      .then(setIsAuth(true))
+      .then(history.replace("#/customers"))
+      .then(history.go())
       .catch((error) => {
         onLogin(false);
         setError("Aucun compte ne possède cette adresse email");

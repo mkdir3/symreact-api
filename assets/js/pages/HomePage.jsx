@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import AuthContext from "../contexts/AuthContext";
 
-const HomePage = ({ isAuth }) => {
+const HomePage = ({}) => {
+  const { isAuth, setIsAuth } = useContext(AuthContext);
   return (
     <div className="jumbotron p-4 m-4">
       <h1 className="display-3">Solution d'Api en React/Symfony</h1>
