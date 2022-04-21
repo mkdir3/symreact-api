@@ -20,18 +20,20 @@ import CustomersPage from "./pages/CustomersPage";
 import InvoicesPage from "./pages/InvoicesPage";
 import LoginPage from "./pages/LoginPage";
 import LoginAPI from "./services/LoginAPI";
-import { createBrowserHistory } from "history";
 import AuthContext from "./contexts/AuthContext";
+import { createBrowserHistory } from "history";
+import CustomerPage from "./pages/CustomerPage";
+
+export const history = createBrowserHistory();
 
 LoginAPI.setup();
 
 const App = () => {
-  let history = createBrowserHistory();
   const [isAuth, setIsAuth] = useState(LoginAPI.isAuthenticated());
 
   return (
-    <AuthContext.Provider value={(isAuth, setIsAuth)}>
-      <HashRouter>
+    <AuthContext.Provider value={{ isAuth, setIsAuth }}>
+      <HashRouter history={history}>
         <Navbar history={history} />
         <main className="container pt-3">
           <Routes>
@@ -41,6 +43,9 @@ const App = () => {
             ></Route>
             {isAuth && (
               <Route path="/customers" element={<CustomersPage />}></Route>
+            )}
+            {isAuth && (
+              <Route path="/customer/:id" element={<CustomerPage />}></Route>
             )}
             {isAuth && (
               <Route path="/invoices" element={<InvoicesPage />}></Route>
